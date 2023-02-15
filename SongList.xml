@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="SongListstyle.css"?>
+
+<songlist>
+
+	<h1>My Song List</h1>
+
+
+	<song>
+		<song_title>What You Won't Do For Love</song_title>
+		<artist>Bobby Caldwell</artist>
+		<year>1978</year>
+		<genre>Jazz</genre>
+	</song>
+
+	<song>
+		<song_title>What's Going On</song_title>
+		<artist>Marvin Gaye</artist>
+		<year>1971</year>
+		<genre>Soul</genre>
+	</song>
+
+	<song>
+		<song_title>Love is a Losing Game</song_title>
+		<artist>Amy Winehouse</artist>
+		<year>2006</year>
+		<genres>
+			<genre>R&amp;B</genre>
+			<genre>/Soul</genre>
+		</genres>
+	</song>
+
+	<song>
+		<song_title>The Girl from Ipanema</song_title>
+		<artist>Frank Sinatra</artist>
+		<year>1967</year>
+		<genres>
+			<genre>Bozza Nova</genre>
+			<genre>/Jazz</genre>
+		</genres>
+	</song>
+
+	<song>
+		<song_title>Dreams</song_title>
+		<artist>Fleetwood Mac</artist>
+		<year>1977</year>
+		<genre>Rock</genre>
+	</song>
+
+	<song>
+		<song_title>Is This Love</song_title>
+		<artist>Bob Marley</artist>
+		<year>1978</year>
+		<genre>Reggae</genre>
+	</song>
+
+	<song>
+		<song_title>My Own Peculiar Way</song_title>
+		<artist>Willie Nelson</artist>
+		<year>1998</year>
+		<genre>Country</genre>
+	</song>
+
+	<song>
+		<song_title>Keep Ya Head Up</song_title>
+		<artist>2Pac</artist>
+		<year>1993</year>
+		<genre>Hip Hop</genre>
+	</song>
+
+	<song>
+		<song_title>'Round Midnight</song_title>
+		<artist>Thelonious Monk</artist>
+		<year>1951</year>
+		<genre>Jazz</genre>
+	</song>
+
+	<song>
+		<song_title>You've Got a Friend</song_title>
+		<artists>
+			<artist>Donny Hathaway</artist>
+			<artist>&amp; Roberta Flack</artist>
+		</artists>
+		<year>1972</year>
+		<genre>Soul</genre>
+	</song>
+
+</songlist>
