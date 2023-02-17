@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+	<head>
+		<script>
+			function order()
+			{
+				hotdogQty = parseInt(prompt("How many hotdogs would you like?"));
+				hotdogQty = Number(hotdogQty);
+
+				friesQty = parseInt(prompt("How many fries would you like?"));
+				friesQty = Number(friesQty);
+			
+				sodaQty = parseInt(prompt("How many sodas would you like?"));
+				sodaQty = Number(sodaQty);
+			}
+
+			function displayorder()
+			{
+				document.getElementById('hotdogCount').innerText = hotdogQty;
+				document.getElementById('friesCount').innerText = friesQty;
+				document.getElementById('sodasCount').innerText = sodaQty;
+			}
+
+			function calculatesubtotal()
+			{
+				subtotal = (hotdogQty* hotdogPrice) + (friesQty*friesPrice) + (sodaQty*sodaPrice);
+			}
+
+			function formatPrice(price)
+			{
+				// subtotal as a string
+				let priceStr = price.toString();
+				// where the decimal point falls
+				let decimalPosition = priceStr.indexOf('.');
+				// figure out how many decimal places are in the priceStr
+				let decimalPlaces = priceStr.length - decimalPosition - 1;
+				// it’s zero if there was no decimal point
+				if (decimalPosition === -1) {
+					priceStr += '.';
+					decimalPlaces = 0;
+					decimalPosition = priceStr.length - 1;
+				}
+				// Remove extra decimal places if needed
+				if (priceStr.length > decimalPosition + 1 + 2) {
+					// Round up
+					if (priceStr[decimalPosition + 3] >= 5) {
+						let newLastDigit = parseInt(priceStr[decimalPosition + 2]) + 1;
+						priceStr = priceStr.slice(0, decimalPosition + 1 + 1) + newLastDigit;
+					} else {
+						priceStr = priceStr.slice(0, decimalPosition + 1 + 2);
+					}
+				}
+				// Add extra decimal places as needed
+				let decimalPlacesToAdd = 2 - decimalPlaces;
+				for (let i = 0; i < decimalPlacesToAdd; i++) {
+					priceStr += '0';
+				}
+
+				return priceStr;
+			}
+
+			function displaysubtotal() {
+				document.getElementById('subtotal').innerText = formatPrice(subtotal);
+			}
+
+			function calculatediscount()
+			{
+				if (subtotal >= 20.00){
+					discount = subtotal*.10
+					subtotal = subtotal - discount
+				}
+				else {
+					discount = 0
+				}
+	
+				document.getElementById('discount').innerText = formatPrice(discount);
+			}
+
+			function calculatetax()
+			{
+				tax = subtotal*.0625;
+				document.getElementById('tax').innerText = formatPrice(tax);
+
+			}
+
+			function finaltotal()
+			{
+				finaltotal = subtotal + tax;
+				document.getElementById('finaltotal').innerText = formatPrice(finaltotal);
+			}
+
+
+			let hotdogPrice = 4.00;
+			let friesPrice = 3.50;
+			let sodaPrice = 1.75;
+			
+		</script>
+
+		<link rel="stylesheet" type="text/css" href="Hotdogstyle.css">
+		<title>Joe's Hotdogs</title>
+	</head>
+
+	<body>
+		<div>
+		<h2>Joe's Hotdogs</h2>
+			<h3>============ Price List ============</h3>
+			<table width= 40%; id="alignment">
+				<tr>
+					<th>Food Item</th>
+					<th></th>
+					<th>Price</th>
+				</tr>
+
+				<tr>
+					<td>Hotdogs</td>
+					<td></td>
+					<td>$4.00</td>
+				</tr>
+
+				<tr>
+					<td>French Fries</td>
+					<td></td>
+					<td>$3.50</td>
+				</tr>
+
+				<tr>
+					<td>Soda</td>
+					<td></td>
+					<td>$1.75</td>
+				</tr>
+			</table>
+		</div>
+
+
+		<h3>Your order details:</h3>
+		<p>Hotdogs: <span id="hotdogCount"></span></p>
+		<p>Fries: <span id="friesCount"></span></p>
+		<p>Sodas: <span id="sodasCount"></span></p>
+		<br>
+
+		<p style="color: #2FD814">Discount: $<span id="discount"></span></p>
+		<p>Subtotal: $<span id="subtotal"></span></p>
+		<p style="color: #D81414">Sales tax: $<span id="tax"></span></p>
+		<h3>Final total: $<span id="finaltotal"></span></h3>
+
+		<script>
+			order();
+			displayorder();
+			calculatesubtotal();
+			calculatediscount();
+			displaysubtotal();
+			calculatetax();
+			finaltotal();
+		</script>
+	</body>
+
+</html>
+
