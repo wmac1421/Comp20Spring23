@@ -35,16 +35,13 @@ function placeSymbol(buttonId) {
     	lockBoard();
     	showResetButton();
 
-    }
-    else {
+    } else if (checkTie()){
+	  	playerTurn.innerHTML = "Its a tie!";
+	  	lockBoard();
+	  	showResetButton();
+    } else {
     	switchPlayer();
     }
-  }
-  if (checkTie()){
-  	playerTurn.innerHTML = "Its a tie!";
-  	lockBoard();
-  	showResetButton();
-
   }
 }
 
