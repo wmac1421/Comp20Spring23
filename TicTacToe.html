@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="TicTacToe.css">
+		<script>
+			window.onload = function() {
+				displayPlayerTurn();
+			}
+			var playerSymbol = ['X', 'O'][Math.floor(Math.random()*2)];
+			const player1Symbol = "X";
+			const player2Symbol = "O";
+			var gameOver = false;
+
+
+//get player symbol
+function getSymbol(buttonId) {
+  document.getElementById(buttonId).innerHTML = playerSymbol;
+}
+
+
+//switch player turn
+function switchPlayer() {
+  playerSymbol = (playerSymbol === 'X') ? 'O' : 'X';
+  displayPlayerTurn();
+}
+
+//place player symbol on the board
+function placeSymbol(buttonId) {
+  var button = document.getElementById(buttonId);
+  if (!button.textContent) { // check if button is empty
+    getSymbol(buttonId);
+    if (checkWin(playerSymbol)){
+    	playerTurn.innerHTML = "Player " + playerSymbol + " wins!";
+    	lockBoard();
+    	showResetButton();
+
+    }
+    else {
+    	switchPlayer();
+    }
+  }
+  if (checkTie()){
+  	playerTurn.innerHTML = "Its a tie!";
+  	lockBoard();
+  	showResetButton();
+
+  }
+}
+
+function displayPlayerTurn(){
+	const playerTurn = document.getElementById("playerTurn");
+	if (playerSymbol === player1Symbol){
+		playerTurn.innerHTML = "Player X's Turn";
+	}
+	else {
+		playerTurn.innerHTML = "Player O's Turn";
+	}
+}
+
+function checkWin(symbol){
+	const board = [
+		document.getElementById('1').textContent,
+    document.getElementById('2').textContent,
+    document.getElementById('3').textContent,
+    document.getElementById('4').textContent,
+    document.getElementById('5').textContent,
+    document.getElementById('6').textContent,
+    document.getElementById('7').textContent,
+    document.getElementById('8').textContent,
+    document.getElementById('9').textContent
+		];
+	// Check rows
+  if ((board[0] === symbol && board[1] === symbol && board[2] === symbol) ||
+      (board[3] === symbol && board[4] === symbol && board[5] === symbol) ||
+      (board[6] === symbol && board[7] === symbol && board[8] === symbol)) {
+    return true;
+  }
+  
+  // Check columns
+  if ((board[0] === symbol && board[3] === symbol && board[6] === symbol) ||
+      (board[1] === symbol && board[4] === symbol && board[7] === symbol) ||
+      (board[2] === symbol && board[5] === symbol && board[8] === symbol)) {
+    return true;
+  }
+  
+  // Check diagonals
+  if ((board[0] === symbol && board[4] === symbol && board[8] === symbol) ||
+      (board[2] === symbol && board[4] === symbol && board[6] === symbol)) {
+    return true;
+  }
+
+  return false;
+}
+
+
+function checkTie(){
+	const board = [
+		document.getElementById('1').textContent,
+    document.getElementById('2').textContent,
+    document.getElementById('3').textContent,
+    document.getElementById('4').textContent,
+    document.getElementById('5').textContent,
+    document.getElementById('6').textContent,
+    document.getElementById('7').textContent,
+    document.getElementById('8').textContent,
+    document.getElementById('9').textContent
+		];
+
+	for (var i = 0; i < board.length; i++){
+		if (board[i] === ''){
+			return false;
+		}
+	}
+	return true;
+}
+
+//lock the board so no more moves can be made
+function lockBoard(){
+	var buttons = document.getElementsByTagName('button');
+	for (var i = 0; i < buttons.length; i++){
+		buttons[i].disabled = true;
+	}
+	gameOver = true;
+}
+
+function showResetButton(){
+	const resetButton = document.createElement('button');
+	resetButton.id = 'resetButton';
+	resetButton.innerHTML = 'Reset Game';
+	resetButton.onclick = resetGame;
+	document.getElementById('resetButtonContainer').appendChild(resetButton);
+}
+
+function resetGame(){
+	const buttons = document.getElementsByTagName('button');
+	for (var i = 0; i < buttons.length; i++) {
+		buttons[i].textContent = '';
+		buttons[i].disabled = false;
+	}
+	const resetButton = document.getElementById('resetButton');
+	resetButton.remove();
+	playerSymbol = ['X', 'O'][Math.floor(Math.random()*2)];
+	displayPlayerTurn();
+}
+
+
+		</script>
+
+	</head>
+
+	<body>
+
+
+
+
+		<h2>Tic Tac Toe: Let's Go!</h2>
+
+	<div class="playerClass">
+		<p id="playerTurn" class="center"></p>
+	</div>
+
+
+		<div class="container">
+		<table id="tic-tac-toe" class="center">
+			<tbody>
+				<tr>
+					<td>
+						<button id="1" onclick="placeSymbol('1')"></button>
+					</td>
+					<td>
+						<button id="2" onclick="placeSymbol('2')"></button>
+					</td>
+					<td>
+						<button id="3" onclick="placeSymbol('3')"></button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id="4" onclick="placeSymbol('4')"></button>
+					</td>
+					<td>
+						<button id="5" onclick="placeSymbol('5')"></button>
+					</td>
+					<td>
+						<button id="6" onclick="placeSymbol('6')"></button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id="7" onclick="placeSymbol('7')"></button>
+					</td>
+					<td>
+						<button id="8" onclick="placeSymbol('8')"></button>
+					</td>
+					<td>
+						<button id="9" onclick="placeSymbol('9')"></button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class = "resetClass">
+		<div id="resetButtonContainer" class="center"></div>
+	</div>
+
+	</body>
+	</html>
+
+
+
+
