@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Jade Delight</title>
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous">
+</script>
+</head>
+
+<style>
+	p.address {
+		display: none;
+	}
+
+	.userInfo label{
+		display: inline-block;
+		width: 100px;
+		text-align: left;
+	}
+
+	.errorMessage{
+		display: none;
+		color: red;
+	}
+
+	</style>
+
+<body>
+<script>
+
+function MenuItem(name, cost)
+{
+	this.name = name;
+	this.cost=cost;
+}
+
+menuItems = new Array(
+	new MenuItem("Chicken Chop Suey", 5.5),
+	new MenuItem("Sweet and Sour Pork", 7.25),
+	new MenuItem("Shrimp Lo Mein", 6.80),
+	new MenuItem("Moo Shi Chicken", 9.50),
+	new MenuItem("Fried Rice", 3.25)
+);
+
+function makeSelect(name, minRange, maxRange)
+{
+	var t= "";
+	t = "<select name='" + name + "' size='1'>";
+	for (j=minRange; j<=maxRange; j++)
+	   t += "<option>" + j + "</option>";
+	t+= "</select>"; 
+	return t;
+}
+
+function td(content, className="")
+{
+	return "<td class = '" + className + "'>" + content + "</td>";
+}
+
+//display street and city fields if user selects delivery
+function DisplayDeliveryFields(){
+	if(document.getElementById("orderForm").elements.p_or_d[1].checked){
+		document.getElementById("street").style.display = 'block';
+		document.getElementById("city").style.display = 'block';
+	}
+}
+
+//remove street and city fields if user selects pickup
+function RemovePickupFields(){
+	if(document.getElementById("orderForm").elements.p_or_d[0].checked){
+		document.getElementById("street").style.display = 'none';
+		document.getElementById("city").style.display = 'none';
+	}
+}
+
+//validate the form entries
+function validateForm(){
+	err = false;
+	document.getElementById("nameError").style.display = 'none';
+	document.getElementById("cityError").style.display = 'none';
+	document.getElementById("streetError").style.display = 'none';
+	document.getElementById("phoneError").style.display = 'none';
+	document.getElementById("foodError").style.display = 'none';
+	with(document.form){
+		//validates that last name was entered
+		if (lname.value == ""){
+			document.getElementById("nameError").style.display = 'inline-block';
+			err = true;
+		}
+		//validates that a city and street were entered if delivery is selected
+		if (p_or_d.value == "delivery"){
+			if (street.value == ""){
+				document.getElementById("streetError").style.display = 'inline-block';
+				err = true;
+			}
+			if (city.value == ""){
+				document.getElementById("cityError").style.display = 'inline-block';
+				err = true;
+			}
+		}
+		//validates a valid phone number was entered
+		validPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+		if ((!(phone.value.match(validPhone)))||(phone.value=="")){
+			document.getElementById("phoneError").style.display = 'inline-block';
+			err = true;
+		}
+		//validates at least one food item was selected
+		if ((total.value == "")||(total.value == 0)){
+			document.getElementById("foodError").style.display = 'inline-block';
+			err = true;
+		}
+
+		if (err == false){
+		alert("Thank you for your order," + " " + document.form.fname.value + " " + document.form.lname.value);
+		displayOrderDetails();
+	}
+	return !err;
+	}
+	//if there are no errors, display an alert that thanks the user and then prints the order details in another page
+}
+
+//print the order details in another window with the estimated order ready time
+function displayOrderDetails(){
+	myWindow = window.open();
+	var css = "<style> body {font-size: 20px; line height: 1.5;} h1 {text-decoration: underline;} </style>";
+	myWindow.document.write(css);
+	myWindow.document.write("<h1>Your order Summary:</h1><br/>");
+	costs = document.getElementsByName("cost");
+	for (i=0; i< menuItems.length; i++){
+		number = parseFloat(costs[i].value);
+		if (!isNaN(number)){
+			number = parseInt(number / parseFloat(menuItems[i].cost));
+			myWindow.document.write(number + " " + menuItems[i].name + " " +  "--- " + "$" + (menuItems[i].cost * number).toFixed(2) + "<br/>");
+		}
+	}
+
+
+//delivery time will be 45 minutes from the time the user ordered
+	var date = new Date();
+	var AmPm = date.getHours() < 12 ? "AM" : "PM";
+	var hours = date.getHours() % 12;
+	hours = hours ? hours : 12; //hour 0 is converted to 12
+	var minutes = date.getMinutes() + 45;
+	//if the user selects pickup the time changes to 15 min after order placed
+	if (document.form.p_or_d.value == "pickup"){
+		minutes = date.getMinutes() + 15;
+	}
+	if (minutes >= 60) {
+		hours++;
+		minutes -= 60;
+	}
+	//ensure the hours and minutes are shown with two digits each
+	var readytime = hours + ":" + minutes.toString().padStart(2,'0') + "" + AmPm;
+
+
+//Display the order details
+myWindow.document.write("Subtotal: $" + document.form.subtotal.value + "<br/>");
+myWindow.document.write("Added tax: $" + document.form.tax.value + "<br/>");
+myWindow.document.write("Order total: $" + document.form.total.value + "<br/>");
+myWindow.document.write("<br/> Your order will be ready at " + readytime + "<br/>");
+}
+
+
+</script>
+
+<h1>Jade Delight</h1>
+<form name = "form" method = "post" id="orderForm">
+
+<p class="userInfo"><label>First Name:</label> <input type="text"  name='fname' /></p>
+<p class="userInfo"><label>Last Name*:</label>  <input type="text"  name='lname' /></p>
+<div id="nameError" class="errorMessage">Last Name is a required field</div>
+<p class="userInfo address" id="street"><label>Street*:</label> <input type="text" name='street' /></p>
+<p class="userInfo address" id="city"><label>City*:</label> <input type="text" name='city' /></p>
+<div id="streetError" class = "errorMessage">Street is a required field</div>
+<div id="cityError" class = "errorMessage">City is a required field</div>
+<p class="userInfo"><label>Phone*:</label> <input type="text"  name='phone' /></p>
+<div id="phoneError" class = "errorMessage">Please enter a valid phone number</div>
+<p> 
+	<input type="radio"  name="p_or_d" value = "pickup" checked="checked" onclick = "RemovePickupFields()" />Pickup  
+	<input type="radio"  name='p_or_d' value = 'delivery' onclick = "DisplayDeliveryFields()"/>
+	Delivery
+</p>
+<table border="0" cellpadding="3">
+  <tr>
+    <th>Select Item</th>
+    <th>Item Name</th>
+    <th>Cost Each</th>
+    <th>Total Cost</th>
+  </tr>
+<script language = "javascript">
+
+  var s = "";
+  for (i=0; i< menuItems.length; i++)
+  {
+	  s += "<tr>";
+	  s += td(makeSelect("quan" + i, 0, 10),"selectQuantity");
+	  s += td(menuItems[i].name, "itemName");
+	  s += td("$" +menuItems[i].cost.toFixed(2), "cost");
+	  s += td("$<input type='text' name='cost'/>", "totalCost");
+	  s+= "</tr>";
+  }
+  document.writeln(s);
+
+
+  $(document).ready(function(){
+  	$("select").change(function(){
+  		quan = this.selectedIndex;
+  		index = this.name.substring(4);
+  		updateCost(index, quan);
+  	})
+
+//update cost
+  function updateCost(index, quan){
+  	total = 0;
+  	cost = menuItems[index].cost;
+  	price = cost*quan;
+  	costs = document.getElementsByName("cost");
+  	costs[index].value = (price.toFixed(2));
+  	updateTotal();
+  }
+})
+
+
+  //updates the subtotal
+  function updateTotal(){
+  	costs = document.getElementsByName("cost");
+  	var total = parseFloat(0);
+  	for (i=0; i < 5; i++){
+  		if (!isNaN(parseInt(costs[i].value))){
+  			total += parseFloat(costs[i].value);
+  		}
+  	}
+  	document.getElementById("subtotal").value = (total.toFixed(2));
+  	updateTax();
+  }
+
+  //updates the tax
+  function updateTax(){
+  	subtotal = document.getElementById("subtotal").value;
+  	tax = subtotal*(.0625);
+  	document.getElementById("tax").value = (tax.toFixed(2));
+  	updateFinalTotal();
+  }
+
+//update Total
+  function updateFinalTotal(){
+  	subtotal = document.getElementById("subtotal").value;
+  	tax = document.getElementById("tax").value;
+  	total = parseFloat(tax) + parseFloat(subtotal);
+  	document.getElementById("total").value = (total.toFixed(2));
+  }
+
+
+
+
+</script>
+</table>
+
+<div id="foodError" class="errorMessage">You must make at least one food selection</div>
+
+<p class="subtotal totalSection"><label>Subtotal</label>: 
+   $ <input type="text"  name='subtotal' id="subtotal" />
+</p>
+<p class="tax totalSection"><label>Mass tax 6.25%:</label>
+  $ <input type="text"  name='tax' id="tax" />
+</p>
+<p class="total totalSection"><label>Total:</label> $ <input type="text"  name='total' id="total" />
+</p>
+
+<input type = "button" value = "Submit Order" onclick = "return validateForm()" />
+
+</form>
+</body>
+</html>
