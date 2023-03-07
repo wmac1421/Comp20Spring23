@@ -1,0 +1,109 @@
+{
+"songs": [
+{
+	"song_title": "What You Won't Do For Love",
+	"artist": "Bobby Caldwell",
+	"year": "1978",
+	"genre": "jazz"
+},
+
+{
+	"song_title": "What's Going On",
+	"artist": "Marvin Gaye",
+	"year": "1971",
+	"genre": "soul"
+},
+
+{
+	"song_title": "Love is a Losing Game",
+	"artist": "Amy Winehouse",
+	"year": "2006",
+	"genre": ["Soul", "R&B"]
+},
+
+{
+	"song_title": "The Girl from Ipanema",
+	"artist": "Frank Sinatra",
+	"year": "1967",
+	"genre": ["Jazz", "Bossa Nova"]
+},
+
+{
+	"song_title": "Dreams",
+	"artist": "Fleetwood Mac",
+	"year": "1977",
+	"genre": "Rock"
+},
+
+{
+	"song_title": "Is This Love",
+	"artist": "Bob Marley",
+	"year": "1978",
+	"genre": "Reggae"
+},
+
+{
+	"song_title": "My Own Peculiar Way",
+	"artist": "Willie Nelson",
+	"year": "1998",
+	"genre": "Country"
+},
+
+{
+	"song_title": "Keep Ya Head Up",
+	"artist": "Tupac",
+	"year": "1993",
+	"genre": "Hip Hop"
+},
+
+{
+	"song_title": "'Round Midnight'",
+	"artist": "Thelonious Monk",
+	"year": "1951",
+	"genre": "Jazz"
+},
+
+{
+	"song_title": "You've Got a Friend",
+	"artist": ["Donny Hathaway", "Roberta Flack"],
+	"year": "1972",
+	"genre": "Soul"
+},
+
+{
+	"song_title": "As",
+	"artist": "Stevie Wonder",
+	"year": "1976",
+	"genre": "Soul"
+},
+
+{
+	"song_title": "One Step Ahead",
+	"artist": "Aretha Franklin",
+	"year": "1996",
+	"genre": "Soul"
+},
+
+{
+	"song_title": "So Far Away",
+	"artist": "Carole King",
+	"year": "1971",
+	"genre": ["Soul", "Rock"]
+},
+
+{
+	"song_title": "Cupid",
+	"artist": "Sam Cooke",
+	"year": "1961",
+	"genre": ["Soul"]
+},
+
+{
+	"song_title": "Tenderly",
+	"artist": "Sarah Vaughan",
+	"year": "1947",
+	"genre": ["Jazz"]
+}
+
+]
+}
