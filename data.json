@@ -4,14 +4,14 @@
 	"song_title": "What You Won't Do For Love",
 	"artist": "Bobby Caldwell",
 	"year": "1978",
-	"genre": "jazz"
+	"genre": "Jazz"
 },
 
 {
 	"song_title": "What's Going On",
 	"artist": "Marvin Gaye",
 	"year": "1971",
-	"genre": "soul"
+	"genre": "Soul"
 },
 
 {
@@ -65,7 +65,7 @@
 
 {
 	"song_title": "You've Got a Friend",
-	"artist": ["Donny Hathaway", "Roberta Flack"],
+	"artist": ["Donny Hathaway", " Roberta Flack"],
 	"year": "1972",
 	"genre": "Soul"
 },
