@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Favorite Songs</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		.center {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		table, th, td {
+			border: 1px solid rgb(209, 49, 34);
+			border-collapse: collapse;
+			padding: 10px;
+			font-family: Clarendon;
+		}
+
+		th {
+			background-color: rgb(128, 178, 49);
+			color: white;
+			font-weight: bold;
+		}
+
+		td {
+			background-color: white;
+		}
+
+
+		h1{
+			font-family: Clarendon;
+			text-align: center;
+			color: rgb(145, 188, 63);
+
+		}
+
+		.centerDiv {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		body {
+			background-color: rgb(37, 38, 32);
+		}
+
+		label[for="genre-select"] {
+			color: white;
+		}
+
+
+	</style>
+
+</head>
+
+<body>
+	<h1>My Favorite Songs</h1>
+
+
+	<div class="centerDiv">
+		<form>
+			<label for="genre-select">Select a genre:</label>
+			<select id="genre-select">
+				<option value="">All Genres</option>
+			</select>
+			<button type="button" id="filter-button">Filter</button>
+		</form>
+	</div>
+
+	<br>
+	<br>
+
+	<table class="center">
+		<thead>
+			<tr>
+				<th>Song Title</th>
+				<th>Artist</th>
+				<th>Genre</th>
+				<th>Release Year</th>
+			</tr>
+		</thead>
+		<tbody id="data">
+		</tbody>
+	</table>
+
+	<script>
+		$.get('https://wmac1421.github.io/Comp20Spring23/data.json', function(data) {
+			var genres = [];
+			$.each(data.songs, function(index, song) {
+				// check if the genre exists as an array
+				var genre = Array.isArray(song.genre) ? song.genre.join(', ') : song.genre;
+				if ($.inArray(genre, genres) === -1) {
+					genres.push(genre);
+					$('#genre-select').append('<option value="' + genre + '">' + genre + '</option>');
+				}
+				$('#data').append('<tr><td><b>' + song.song_title + '</b></td><td>' + song.artist + '</td><td>' + genre + '</td><td>' + song.year + '</td></tr>');
+			});
+
+			$('#filter-button').click(function() {
+				var selectedGenre = $('#genre-select').val();
+				$('#data tr').hide();
+				if (selectedGenre === '') {
+					$('#data tr').show();
+				} else {
+					$('#data tr td:nth-child(3)').filter(function() {
+						return $(this).text() === selectedGenre;
+					}).parent().show();
+				}
+			});
+		}, 'json')
+		.fail(function(error) {
+			console.error(error);
+		});
+	</script>
+</body>
+</html>
