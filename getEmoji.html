@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Emoji</title>
+    <meta charset="utf-8">
+    <script>
+      function getEmoji() {
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        const targetUrl = 'https://emojihub.yurace.pro/api/random';
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', proxyUrl + targetUrl);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            const emoji = JSON.parse(xhr.responseText);
+            const name = emoji.name;
+            const category = emoji.category;
+            const group = emoji.group;
+            const htmlCode = emoji.htmlCode[0];
+            const unicode = emoji.unicode[0];
+
+            const emojiElement = document.getElementById('emoji');
+            emojiElement.innerHTML = `${htmlCode} ${name} (${category} - ${group})`;
+          } else {
+            console.log('Request failed.  Returned status of ' + xhr.status);
+          }
+        };
+        xhr.send();
+      }
+    </script>
+  </head>
+  <body onload="getEmoji()">
+    <h1>Random Emoji</h1>
+    <div id="emoji">Loading...</div>
+    <br>
+    <div>This page displays a random emoji and describes the object category beside it</div>
+    <div>The website where this data comes from can be found here: <b> https://emojihub.yurace.pro/api/random</b></div>
+    <br>
+    <br>
+      <div>A temporary proxy is used as the Emojihub API does not allow cross-origin requests from client-side scripts. Please visit: https://cors-anywhere.herokuapp.com/corsdemo to enable temporary access if there is an error.</div>
+
+      <br>
+
+      <div>The options used for the API request are: <br>
+        1. <b>const proxyURL</b>: this contains the URL of a CORS proxy server. 
+        <br>
+        2. <b>proxyURL</b>: enables the API request to the Emojihub API. 
+        <br>
+        3. <b>targetURL</b>: variable that contains the URL of the emojihub API endpoint that returns a random emoji. 
+        <br>
+        4. <b>xhr.open('GET', proxyUrl, targetUrl)</b>: sets the request method to GET and specifies the URL for the request. 
+        <br>
+        5. <b>xhr.setRequestHeader</b>: sets the request header for the content type to 'application/json'.
+        <br>
+        6. <b>xhr.onload</b>: event handler that is called when the API request has completed successfuly. 
+        <br>
+        7. <b>xhr.send()</b>: sends the API request to the server.
+
+        <br>
+        <br>
+        <div>Two potential applications for this code are:
+
+          <br>1. <b>Educational tool</b>: This code could be used as a simple educational tool for teaching children about different types of objects, animals, or other items. Each time the page is loaded, a random emoji and its associated category will be displayed, allowing children to learn about new objects in a fun and engaging way.
+          <br>2. <b>Inspiration</b>: This code could also be used as an inspiration generator for creative projects, such as writing, drawing, or design. Each time the page is loaded, a new random emoji and its associated category will be displayed, providing users with a fresh source of ideas and inspiration. Users could even challenge themselves to create something based on the emoji and category they are presented with.
+
+
+
+
+
+  </body>
+</html>
