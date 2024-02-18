@@ -26,7 +26,7 @@
     border: none;
     width: 100%;
     font-size: 32px;
-    font-family: Gilroy-M;
+    font-family: Gilroy-Medium;
     background-color: rgba(0, 0, 0, 0);
     color: var(--nav-link-icon);
     margin-left: 10px;
@@ -70,7 +70,7 @@
 }
 
 .button p {
-    font-family: Gilroy-M;
+    font-family: Gilroy-Medium;
     font-size: 15px;
     color: var(--main-bg);
 }
@@ -234,7 +234,7 @@
 }
 
 .info-value {
-    font-family: Gilroy-M;
+    font-family: Gilroy-Medium;
     color: var(--second-text);
 }
 
