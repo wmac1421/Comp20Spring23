@@ -33,7 +33,7 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: Gilroy-SB;
+    font-family: Gilroy-SemiBold;
     box-sizing: border-box;
 }
 
@@ -64,7 +64,7 @@ h1 {
 }
 
 h2 {
-    font-family: Gilroy-R;
+    font-family: Gilroy-Regular;
     font-size: 16px;
     color: var(--second-text);
 }
@@ -88,7 +88,7 @@ input {
     padding: 0px 14px;
     font-size: 16px;
     color: var(--second-text);
-    font-family: Gilroy-R;
+    font-family: Gilroy-Regular;
 }
 
 button {
@@ -111,7 +111,7 @@ button:hover {
 }
 
 .create-account p {
-    font-family: Gilroy-R;
+    font-family: Gilroy-Regular;
 }
 
 a {
