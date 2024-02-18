@@ -1,16 +1,16 @@
 @font-face {
     font-family: Gilroy-SB;
-    src: url("gilroy/Gilroy-SemiBold.otf") format("opentype");
+    src: url("Gilroy-SemiBold.otf") format("opentype");
 }
 
 @font-face {
     font-family: Gilroy-M;
-    src: url("gilroy/Gilroy-Medium.otf") format("opentype");
+    src: url("Gilroy-Medium.otf") format("opentype");
 }
 
 @font-face {
     font-family: Void;
-    src: url("gilroy/VoidSemiBold.woff") format("woff");
+    src: url("Gilroy-SemiBold.otf") format("opentype");
 }
 
 :root {
