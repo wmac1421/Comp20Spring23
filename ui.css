@@ -33,7 +33,7 @@
     border: none;
     width: 100%;
     font-size: 32px;
-    font-family: Gilroy-Medium;
+    font-family: Gilroy-M;
     background-color: rgba(0, 0, 0, 0);
     color: var(--nav-link-icon);
     margin-left: 10px;
@@ -77,7 +77,7 @@
 }
 
 .button p {
-    font-family: Gilroy-Medium;
+    font-family: Gilroy-M;
     font-size: 15px;
     color: var(--main-bg);
 }
@@ -233,7 +233,7 @@
 }
 
 .info-value {
-    font-family: Gilroy-Medium;
+    font-family: Gilroy-M;
     color: var(--second-text);
 }
 
@@ -291,7 +291,7 @@
 }
 
 .ui-button p {
-    font-family: Gilroy-Medium;
+    font-family: Gilroy-M;
     color: var(--ui-light);
 }
 
@@ -331,7 +331,7 @@
 
 .ui-h1 {
     font-size: 35px;
-    font-family: Gilroy-Medium;
+    font-family: Gilroy-M;
     color: var(--ui-dark);
 }
 
@@ -341,7 +341,7 @@
     width: 80%;
     line-height: 18px;
     color: var(--ui-dark);
-    font-family: Gilroy-Medium;
+    font-family: Gilroy-M;
     font-size: 13px;
 }
 
