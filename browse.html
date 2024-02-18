@@ -8,7 +8,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" href="nav.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="browse.css">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
             <div class="nav-top">
                 <img class="logo" src="coluux_red.png" alt="">
                 <div class="links-container">
-                    <a href="" class="nav-link current">
+                    <a href="index.html" class="nav-link ">
                         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"
                             class="nav-link-icon">
                             <path
@@ -45,7 +45,7 @@
                         </svg>
                         <p class="nav-link-lable">UI Palette Generator</p>
                     </a>
-                    <a href="browse.html" class="nav-link">
+                    <a href="" class="nav-link current">
                         <svg class="nav-link-icon" width="19" height="20" viewBox="0 0 19 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -89,31 +89,10 @@
         <div class="body-container">
             <div class="body-top">
                 <div class="body-top-left">
-                    <svg class="pencil-icon" width="22" height="22" viewBox="0 0 20 20" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M10.7171 4.03706L13.4934 1.26074L18.3519 6.11929L15.5756 8.89556M10.7171 4.03706L1.28749 13.4667C1.10342 13.6507 1 13.9004 1 14.1607V18.6127H5.45196C5.71229 18.6127 5.96196 18.5093 6.14604 18.3252L15.5756 8.89556M10.7171 4.03706L15.5756 8.89556"
-                            stroke="#555555" stroke-width="1.30139" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-
-                    <input type="text" id="palette-name" name="palette-name" value="Untitled Palette">
+                    <p id="palette-name">My Palettes</p>
                 </div>
                 <div class="body-top-right">
-                    <button onclick="save()" class="button save">
-                        <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M1 12.9351V2.48164C1 1.65688 1.6686 0.988281 2.49335 0.988281H10.8349C11.231 0.988281 11.6108 1.14561 11.8909 1.42568L14.0028 3.53759C14.2829 3.81766 14.4402 4.19749 14.4402 4.59356V12.9351C14.4402 13.7599 13.7716 14.4285 12.9468 14.4285H2.49335C1.6686 14.4285 1 13.7599 1 12.9351Z"
-                                stroke="#F92B67" stroke-width="0.887608" />
-                            <path
-                                d="M5.18238 5.46834H10.2598C10.5072 5.46834 10.7078 5.26776 10.7078 5.02034V1.43629C10.7078 1.18886 10.5072 0.988281 10.2598 0.988281H5.18238C4.93496 0.988281 4.73438 1.18886 4.73438 1.43629V5.02034C4.73438 5.26776 4.93496 5.46834 5.18238 5.46834Z"
-                                stroke="#F92B67" stroke-width="0.887608" />
-                            <path
-                                d="M3.24023 8.90308V14.4285H12.2004V8.90308C12.2004 8.65564 11.9998 8.45508 11.7524 8.45508H3.68824C3.44081 8.45508 3.24023 8.65564 3.24023 8.90308Z"
-                                stroke="#F92B67" stroke-width="0.887608" />
-                        </svg>
-                        <p>Save Palette</p>
-                    </button>
-                    <a href="" class="button">
+                    <a href="index.html" class="button">
                         <p>New Palette</p>
                         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <line x1="6.54927" y1="0.786133" x2="6.54927" y2="12.325" stroke="white"
@@ -125,39 +104,123 @@
                 </div>
             </div>
 
-            <div class="tool-container">
-                <div class="tool-col left">
-                    <button onclick="randomizePalette()" class="button">
-                        <p>Randomize</p>
-                    </button>
-                    <div class="loader"></div>
-                </div>
-            </div>
-
             <div class="color-palette-container" id="palette-container">
-                <!-- <div class="color-container">
-                    <div class="lock-container">
-                        <p>Lock</p>
-                        <input type="checkbox" id="lock">
+                <div class="color-container">
+                    <div class="palette-color-container">
+                        <div class="color" style="background-color: #fbd6d3;"></div>
+                        <div class="color" style="background-color: #fdffff;"></div>
+                        <div class="color" style="background-color: #f7a8a3;"></div>
+                        <div class="color" style="background-color: #b1dcba;"></div>
+                        <div class="color" style="background-color: #526757;"></div>
                     </div>
-                    <input type="color" class="color" id="color" value="#0000ff">
                     <div class="color-info">
                         <div class="color-info-row">
-                            <p class="info-key">RGB</p>
-                            <p class="info-value" id="rgb">12, 12, 12</p>
-                        </div>
-                        <div class="color-info-row">
-                            <p class="info-key">HEX</p>
-                            <p class="info-value" id="hex">#121212</p>
+                            <p class="info-key">My First Palette</p>
                         </div>
                     </div>
-                </div> -->
+                </div>
+                <div class="color-container">
+                    <div class="palette-color-container">
+                        <div class="color" style="background-color: #fbd6d3;"></div>
+                        <div class="color" style="background-color: #fdffff;"></div>
+                        <div class="color" style="background-color: #f7a8a3;"></div>
+                        <div class="color" style="background-color: #b1dcba;"></div>
+                        <div class="color" style="background-color: #526757;"></div>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-info-row">
+                            <p class="info-key">My First Palette</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="color-container">
+                    <div class="palette-color-container">
+                        <div class="color" style="background-color: #fbd6d3;"></div>
+                        <div class="color" style="background-color: #fdffff;"></div>
+                        <div class="color" style="background-color: #f7a8a3;"></div>
+                        <div class="color" style="background-color: #b1dcba;"></div>
+                        <div class="color" style="background-color: #526757;"></div>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-info-row">
+                            <p class="info-key">My First Palette</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="color-container">
+                    <div class="palette-color-container">
+                        <div class="color" style="background-color: #fbd6d3;"></div>
+                        <div class="color" style="background-color: #fdffff;"></div>
+                        <div class="color" style="background-color: #f7a8a3;"></div>
+                        <div class="color" style="background-color: #b1dcba;"></div>
+                        <div class="color" style="background-color: #526757;"></div>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-info-row">
+                            <p class="info-key">My First Palette</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="color-container">
+                    <div class="palette-color-container">
+                        <div class="color" style="background-color: #fbd6d3;"></div>
+                        <div class="color" style="background-color: #fdffff;"></div>
+                        <div class="color" style="background-color: #f7a8a3;"></div>
+                        <div class="color" style="background-color: #b1dcba;"></div>
+                        <div class="color" style="background-color: #526757;"></div>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-info-row">
+                            <p class="info-key">My First Palette</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="color-container">
+                    <div class="palette-color-container">
+                        <div class="color" style="background-color: #fbd6d3;"></div>
+                        <div class="color" style="background-color: #fdffff;"></div>
+                        <div class="color" style="background-color: #f7a8a3;"></div>
+                        <div class="color" style="background-color: #b1dcba;"></div>
+                        <div class="color" style="background-color: #526757;"></div>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-info-row">
+                            <p class="info-key">My First Palette</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="color-container">
+                    <div class="palette-color-container">
+                        <div class="color" style="background-color: #fbd6d3;"></div>
+                        <div class="color" style="background-color: #fdffff;"></div>
+                        <div class="color" style="background-color: #f7a8a3;"></div>
+                        <div class="color" style="background-color: #b1dcba;"></div>
+                        <div class="color" style="background-color: #526757;"></div>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-info-row">
+                            <p class="info-key">My First Palette</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="color-container">
+                    <div class="palette-color-container">
+                        <div class="color" style="background-color: #fbd6d3;"></div>
+                        <div class="color" style="background-color: #f7a8a3;"></div>
+                        <div class="color" style="background-color: #b1dcba;"></div>
+                        <div class="color" style="background-color: #526757;"></div>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-info-row">
+                            <p class="info-key">My First Palette</p>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
         </div>
     </div>
     <script src="darkmode.js"></script>
-    <script src="script.js"></script>
 </body>
 
 </html>
